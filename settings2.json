@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "SpiderMan", 
+    "username": "IronMan", 
     "password": "",
     "type": "mojang"
   },
 
   "server": {
-    "ip": "play-world.minehost.games", 
-    "port": 25565,   
+    "ip": "myhomeworld.aternos.me", 
+    "port": 26395,   
     "version": "1.12.1"   
   },
   
