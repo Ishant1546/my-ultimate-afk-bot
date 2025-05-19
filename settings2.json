@@ -2,7 +2,7 @@
   "bot-account": {
     "username": "IronMan", 
     "password": "",
-    "type": "mojang"
+    "type": "offline"
   },
 
   "server": {
