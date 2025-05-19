@@ -1,138 +1,32 @@
 const mineflayer = require('mineflayer');
-const { pathfinder, Movements, goals: { GoalBlock } } = require('mineflayer-pathfinder');
-const express = require('express');
+const fs = require('fs');
 
-const config1 = require('./settings.json');
-const config2 = require('./settings2.json');
+const config = JSON.parse(fs.readFileSync('./settings.json', 'utf8'));
 
-const app = express();
-app.get('/', (req, res) => {
-  res.send('Both AFK Bots are running');
-});
-app.listen(8000, () => {
-  console.log('Status web server started on port 8000');
-});
+function createBot() {
+  const bot = mineflayer.createBot({
+    host: config.server.ip,
+    port: config.server.port,
+    username: config['bot-account'].username,
+    password: config['bot-account'].password || undefined,
+    auth: config['bot-account'].type,
+    version: config.server.version
+  });
 
-function createBot(config) {
-   let reconnecting = false;
+  bot.on('spawn', () => {
+    console.log(`[${config['bot-account'].username}] Joined the server`);
+  });
 
-   const bot = mineflayer.createBot({
-      username: config['bot-account']['username'],
-      password: config['bot-account']['password'],
-      auth: config['bot-account']['type'],
-      host: config.server.ip,
-      port: config.server.port,
-      version: config.server.version,
-   });
+  bot.on('end', () => {
+    console.log(`[${config['bot-account'].username}] Disconnected. Reconnecting in ${config.utils['auto-reconnect-delay']}ms...`);
+    if (config.utils['auto-reconnect']) {
+      setTimeout(() => createBot(), config.utils['auto-reconnect-delay']);
+    }
+  });
 
-   bot.loadPlugin(pathfinder);
-   const mcData = require('minecraft-data')(bot.version);
-   const defaultMove = new Movements(bot, mcData);
-   bot.settings.colorsEnabled = false;
-
-   async function sendRegister(password) {
-      return new Promise((resolve, reject) => {
-         bot.chat(`/register ${password} ${password}`);
-         bot.once('chat', (username, message) => {
-            if (message.includes('successfully registered') || message.includes('already registered')) {
-               resolve();
-            } else {
-               reject(`Register failed: ${message}`);
-            }
-         });
-      });
-   }
-
-   async function sendLogin(password) {
-      return new Promise((resolve, reject) => {
-         bot.chat(`/login ${password}`);
-         bot.once('chat', (username, message) => {
-            if (message.includes('successfully logged in')) {
-               resolve();
-            } else {
-               reject(`Login failed: ${message}`);
-            }
-         });
-      });
-   }
-
-   bot.once('spawn', () => {
-      console.log(`\x1b[33m[${bot.username}] Joined the server\x1b[0m`);
-
-      // Auto-auth
-      if (config.utils['auto-auth'].enabled) {
-         const password = config.utils['auto-auth'].password;
-         sendRegister(password)
-            .then(() => sendLogin(password))
-            .catch(console.error);
-      }
-
-      // Chat messages
-      if (config.utils['chat-messages'].enabled) {
-         const messages = config.utils['chat-messages'].messages;
-         if (config.utils['chat-messages'].repeat) {
-            const delay = config.utils['chat-messages']['repeat-delay'];
-            let i = 0;
-            setInterval(() => {
-               bot.chat(messages[i] || '');
-               i = (i + 1) % messages.length;
-            }, delay * 1000);
-         } else {
-            messages.forEach(msg => bot.chat(msg));
-         }
-      }
-
-      // Move to position
-      if (config.position.enabled) {
-         const { x, y, z } = config.position;
-         console.log(`[${bot.username}] Moving to (${x}, ${y}, ${z})`);
-         bot.pathfinder.setMovements(defaultMove);
-         bot.pathfinder.setGoal(new GoalBlock(x, y, z));
-      }
-
-      // Anti-AFK
-      if (config.utils['anti-afk'].enabled) {
-         bot.setControlState('jump', true);
-         if (config.utils['anti-afk'].sneak) {
-            bot.setControlState('sneak', true);
-         }
-      }
-   });
-
-   bot.on('goal_reached', () => {
-      console.log(`[${bot.username}] Reached goal position.`);
-   });
-
-   bot.on('death', () => {
-      console.log(`[${bot.username}] Died and respawned.`);
-   });
-
-   // Reconnect logic
-   if (config.utils['auto-reconnect']) {
-      bot.on('end', () => {
-         if (reconnecting) return;
-         reconnecting = true;
-
-         const delay = config.utils['auto-reconnect-delay'] || 5000;
-         console.log(`[${bot.username}] Disconnected. Reconnecting in ${delay}ms...`);
-
-         setTimeout(() => {
-            reconnecting = false;
-            console.log(`[${bot.username}] Attempting to reconnect...`);
-            createBot(config);
-         }, delay);
-      });
-   }
-
-   bot.on('kicked', reason => {
-      console.log(`[${bot.username}] Kicked: ${reason}`);
-   });
-
-   bot.on('error', err => {
-      console.error(`[${bot.username}] Error: ${err.message}`);
-   });
+  bot.on('error', err => {
+    console.error(`[${config['bot-account'].username}] Error:`, err);
+  });
 }
 
-// Start both bots
-createBot(config1);
-createBot(config2);
+createBot();
