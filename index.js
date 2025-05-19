@@ -102,11 +102,16 @@ function createBot(config) {
    });
 
    if (config.utils['auto-reconnect']) {
-      bot.on('end', () => {
-         console.log(`[${bot.username}] Disconnected. Reconnecting in ${config.utils['auto-recconect-delay']}ms...`);
-         setTimeout(() => createBot(config), config.utils['auto-recconect-delay']);
-      });
-   }
+   bot.on('end', () => {
+      const delay = config.utils['auto-reconnect-delay'];
+      console.log(`[${bot.username}] Disconnected. Reconnecting in ${delay}ms...`);
+      
+      setTimeout(() => {
+         console.log(`[${bot.username}] Attempting to reconnect...`);
+         createBot(config);
+      }, delay);
+   });
+}
 
    bot.on('kicked', reason => {
       console.log(`[${bot.username}] Kicked: ${reason}`);
