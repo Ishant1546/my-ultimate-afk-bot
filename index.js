@@ -14,6 +14,8 @@ app.listen(8000, () => {
 });
 
 function createBot(config) {
+   let reconnecting = false;
+
    const bot = mineflayer.createBot({
       username: config['bot-account']['username'],
       password: config['bot-account']['password'],
@@ -28,7 +30,7 @@ function createBot(config) {
    const defaultMove = new Movements(bot, mcData);
    bot.settings.colorsEnabled = false;
 
-   function sendRegister(password) {
+   async function sendRegister(password) {
       return new Promise((resolve, reject) => {
          bot.chat(`/register ${password} ${password}`);
          bot.once('chat', (username, message) => {
@@ -41,7 +43,7 @@ function createBot(config) {
       });
    }
 
-   function sendLogin(password) {
+   async function sendLogin(password) {
       return new Promise((resolve, reject) => {
          bot.chat(`/login ${password}`);
          bot.once('chat', (username, message) => {
@@ -55,8 +57,9 @@ function createBot(config) {
    }
 
    bot.once('spawn', () => {
-      console.log(`\x1b[33m[${config['bot-account']['username']}] Joined the server\x1b[0m`);
+      console.log(`\x1b[33m[${bot.username}] Joined the server\x1b[0m`);
 
+      // Auto-auth
       if (config.utils['auto-auth'].enabled) {
          const password = config.utils['auto-auth'].password;
          sendRegister(password)
@@ -64,6 +67,7 @@ function createBot(config) {
             .catch(console.error);
       }
 
+      // Chat messages
       if (config.utils['chat-messages'].enabled) {
          const messages = config.utils['chat-messages'].messages;
          if (config.utils['chat-messages'].repeat) {
@@ -78,6 +82,7 @@ function createBot(config) {
          }
       }
 
+      // Move to position
       if (config.position.enabled) {
          const { x, y, z } = config.position;
          console.log(`[${bot.username}] Moving to (${x}, ${y}, ${z})`);
@@ -85,6 +90,7 @@ function createBot(config) {
          bot.pathfinder.setGoal(new GoalBlock(x, y, z));
       }
 
+      // Anti-AFK
       if (config.utils['anti-afk'].enabled) {
          bot.setControlState('jump', true);
          if (config.utils['anti-afk'].sneak) {
@@ -101,17 +107,22 @@ function createBot(config) {
       console.log(`[${bot.username}] Died and respawned.`);
    });
 
+   // Reconnect logic
    if (config.utils['auto-reconnect']) {
-   bot.on('end', () => {
-      const delay = config.utils['auto-reconnect-delay'];
-      console.log(`[${bot.username}] Disconnected. Reconnecting in ${delay}ms...`);
-      
-      setTimeout(() => {
-         console.log(`[${bot.username}] Attempting to reconnect...`);
-         createBot(config);
-      }, delay);
-   });
-}
+      bot.on('end', () => {
+         if (reconnecting) return;
+         reconnecting = true;
+
+         const delay = config.utils['auto-reconnect-delay'] || 5000;
+         console.log(`[${bot.username}] Disconnected. Reconnecting in ${delay}ms...`);
+
+         setTimeout(() => {
+            reconnecting = false;
+            console.log(`[${bot.username}] Attempting to reconnect...`);
+            createBot(config);
+         }, delay);
+      });
+   }
 
    bot.on('kicked', reason => {
       console.log(`[${bot.username}] Kicked: ${reason}`);
