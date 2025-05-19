@@ -4,7 +4,7 @@ const pathfinder = require('mineflayer-pathfinder').pathfinder;
 const { GoalBlock } = require('mineflayer-pathfinder').goals;
 
 const config = require('./settings.json');
-const config = require('./settings2.json');
+const config1 = require('./settings2.json');
 const express = require('express');
 
 const app = express();
