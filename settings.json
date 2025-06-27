@@ -6,8 +6,8 @@
   },
 
   "server": {
-    "ip": "teamhunters.play.hosting", 
-    "port": 36258,   
+    "ip": "1blazemc.play.hosting", 
+    "port": 35568,   
     "version": "1.12.1"   
   },
   
