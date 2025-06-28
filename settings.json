@@ -6,8 +6,8 @@
   },
 
   "server": {
-    "ip": "MOTEL_MC_S2.aternos.me", 
-    "port": 63248,   
+    "ip": "1blazemc.play.hosting", 
+    "port": 61013,   
     "version": "1.12.1"   
   },
   
