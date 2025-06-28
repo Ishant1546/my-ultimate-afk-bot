@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "SpiderMan", 
+    "username": "YT_Ishant_AFK_BOT", 
     "password": "",
     "type": "mojang"
   },
 
   "server": {
-    "ip": "1blazemc.play.hosting", 
-    "port": 35568,   
+    "ip": "blenny.aternos.host", 
+    "port": 63248,   
     "version": "1.12.1"   
   },
   
