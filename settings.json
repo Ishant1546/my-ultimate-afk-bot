@@ -6,7 +6,7 @@
   },
 
   "server": {
-    "ip": "blenny.aternos.host", 
+    "ip": "MOTEL_MC_S2.aternos.me", 
     "port": 63248,   
     "version": "1.12.1"   
   },
@@ -20,8 +20,8 @@
 
   "utils": {
     "auto-auth": {
-      "enabled": false,
-      "password": ""
+      "enabled": true,
+      "password": "donottrytologin"
     },
 
     "anti-afk": {
@@ -35,7 +35,7 @@
       "repeat-delay": 60,
 
       "messages": [
-        ""
+        "This Is AFK Bot Made By YT_Ishant To Keep MOTEL MC 24/7 Online !"
       ]
     },
 
