@@ -7,7 +7,7 @@
 
   "server": {
     "ip": "1blazemc.play.hosting", 
-    "port": 61013,   
+    "port": ,   
     "version": "1.12.1"   
   },
   
