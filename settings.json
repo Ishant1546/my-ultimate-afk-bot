@@ -1,6 +1,6 @@
 {
   "bot-account": {
-    "username": "YT_Ishant_AFKBOT", 
+    "username": "MOTELMC_BOT", 
     "password": "",
     "type": "mojang"
   },
@@ -35,7 +35,7 @@
       "repeat-delay": 60,
 
       "messages": [
-        "This Is AFK Bot Made By YT_Ishant To Keep MOTEL MC 24/7 Online !"
+        ""
       ]
     },
 
