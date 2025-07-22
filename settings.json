@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "MOTELMC_BOT", 
+    "username": "BLAZEMC_BOT", 
     "password": "",
     "type": "mojang"
   },
 
   "server": {
-    "ip": "191.96.231.5", 
-    "port": "11932",   
+    "ip": "191.96.231.11", 
+    "port": "31672",   
     "version": "1.12.1"   
   },
   
