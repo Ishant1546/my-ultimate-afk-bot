@@ -6,7 +6,7 @@
   },
 
   "server": {
-    "ip": "191.96.231.11", 
+    "ip": "play2.hbmc.net", 
     "port": "31672",   
     "version": "1.12.1"   
   },
