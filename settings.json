@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "MOTELMC_BOT", 
+    "username": "Check_Store", 
     "password": "",
     "type": "mojang"
   },
 
   "server": {
-    "ip": "motelmc.24-7.ro", 
-    "port": "11932",   
+    "ip": "play2.hbmc.net", 
+    "port": "31672",   
     "version": "1.12.1"   
   },
   
@@ -21,7 +21,7 @@
   "utils": {
     "auto-auth": {
       "enabled": true,
-      "password": "donottrytologin"
+      "password": "Check_Store_ispass"
     },
 
     "anti-afk": {
@@ -30,12 +30,12 @@
     },
 
     "chat-messages": {
-      "enabled": false,
+      "enabled": true,
       "repeat": true,
       "repeat-delay": 60,
 
       "messages": [
-        ""
+        "Hey! Check Out Our Temporary Store In Our Dc Via /discord."
       ]
     },
 
