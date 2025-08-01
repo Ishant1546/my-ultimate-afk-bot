@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "IronMan", 
+    "username": "Join_DC", 
     "password": "",
     "type": "offline"
   },
 
   "server": {
-    "ip": "myhomeworld.aternos.me", 
-    "port": 26395,   
+    "ip": "play2.hbmc.net", 
+    "port": 31672,   
     "version": "1.12.1"   
   },
   
@@ -20,13 +20,13 @@
 
   "utils": {
     "auto-auth": {
-      "enabled": false,
-      "password": ""
+      "enabled": true,
+      "password": "Join_DC_ispass"
     },
 
     "anti-afk": {
       "enabled": true,
-      "sneak": true
+      "sneak": false
     },
 
     "chat-messages": {
@@ -35,7 +35,7 @@
       "repeat-delay": 60,
 
       "messages": [
-        ""
+        "Hey! I Think You Forgot To Join Our Discord Pls Join It Via /discord | If You Joined Then Ignore It. "
       ]
     },
 
