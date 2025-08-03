@@ -1,0 +1,46 @@
+{
+  "bot-account": {
+    "username": "SeNpAi_Is_BOT", 
+    "password": "",
+    "type": "offline"
+  },
+
+  "server": {
+    "ip": "DEVIL_KING111.aternos.me", 
+    "port": 58542,   
+    "version": "1.12.1"   
+  },
+  
+  "position": {
+    "enabled": false,
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+
+  "utils": {
+    "auto-auth": {
+      "enabled": true,
+      "password": "SeNpAi_ispass"
+    },
+
+    "anti-afk": {
+      "enabled": true,
+      "sneak": true
+    },
+
+    "chat-messages": {
+      "enabled": true,
+      "repeat": true,
+      "repeat-delay": 60,
+
+      "messages": [
+        "Hey! I Think You Forgot That SeNpAi_Is_BOT Pls Msg Him That SeNpAi Is NOOOOB !. "
+      ]
+    },
+
+    "chat-log": true,
+    "auto-reconnect": true,
+    "auto-reconnect-delay": 50
+  }
+}
