@@ -1,0 +1,46 @@
+{
+  "bot-account": {
+    "username": "MOTELMC_BOT", 
+    "password": "",
+    "type": "offline"
+  },
+
+  "server": {
+    "ip": "motelmc.24-7.ro", 
+    "port": 11932,   
+    "version": "1.12.1"   
+  },
+  
+  "position": {
+    "enabled": false,
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+
+  "utils": {
+    "auto-auth": {
+      "enabled": true,
+      "password": "motelmc_ispass"
+    },
+
+    "anti-afk": {
+      "enabled": true,
+      "sneak": true
+    },
+
+    "chat-messages": {
+      "enabled": false,
+      "repeat": true,
+      "repeat-delay": 60,
+
+      "messages": [
+        "Hey! I Think You Forgot To Join Our Discord Pls Join It Via /discord | If You Joined Then Ignore It. "
+      ]
+    },
+
+    "chat-log": true,
+    "auto-reconnect": true,
+    "auto-reconnect-delay": 5000
+  }
+}
