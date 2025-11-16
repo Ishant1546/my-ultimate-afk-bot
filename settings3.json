@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "SeNpAi_Is_BOT", 
+    "username": "SeNpAi_Is_BeSt", 
     "password": "",
     "type": "offline"
   },
 
   "server": {
-    "ip": "DEVIL_KING111.aternos.me", 
-    "port": 58542,   
+    "ip": "HeartlessMC_S1.aternos.me", 
+    "port": 45705,   
     "version": "1.12.1"   
   },
   
@@ -30,7 +30,7 @@
     },
 
     "chat-messages": {
-      "enabled": true,
+      "enabled": false,
       "repeat": true,
       "repeat-delay": 60,
 
