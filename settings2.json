@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "JOIN_DISCORD", 
+    "username": "Motel_X_Heartless", 
     "password": "",
     "type": "offline"
   },
 
   "server": {
-    "ip": "play2.hbmc.net", 
-    "port": 31672,   
+    "ip": "HeartlessMC_S1.aternos.me", 
+    "port": 45705,   
     "version": "1.12.1"   
   },
   
@@ -21,7 +21,7 @@
   "utils": {
     "auto-auth": {
       "enabled": true,
-      "password": "Join_DC_ispass"
+      "password": "motel_ispass"
     },
 
     "anti-afk": {
@@ -30,7 +30,7 @@
     },
 
     "chat-messages": {
-      "enabled": true,
+      "enabled": false,
       "repeat": true,
       "repeat-delay": 60,
 
