@@ -1,13 +1,13 @@
 {
   "bot-account": {
-    "username": "CHECK_STORE", 
+    "username": "Aloo_Khaoge", 
     "password": "",
     "type": "mojang"
   },
 
   "server": {
-    "ip": "play2.hbmc.net", 
-    "port": "31672",   
+    "ip": "HeartlessMC_S1.aternos.me", 
+    "port": "45705",   
     "version": "1.12.1"   
   },
   
@@ -21,7 +21,7 @@
   "utils": {
     "auto-auth": {
       "enabled": true,
-      "password": "Check_Store_ispass"
+      "password": "aloo_ispass"
     },
 
     "anti-afk": {
